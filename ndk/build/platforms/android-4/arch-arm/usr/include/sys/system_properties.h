@@ -31,7 +31,7 @@
 
 typedef struct prop_info prop_info;
 
-#define PROP_NAME_MAX   32
+#define PROP_NAME_MAX   128
 #define PROP_VALUE_MAX  92
 
 /* Look up a system property by name, copying its value and a
