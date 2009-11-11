@@ -116,7 +116,7 @@ check_awk ()
     fi
     local result
     result=`echo "" | $executable -f build/check-awk.awk`
-    if [ "$result" == "Pass" ] ; then
+    if [ "$result" = "Pass" ] ; then
         AWK="$1"
     fi
     log2 "    Check $result"
@@ -219,15 +219,15 @@ add_config "HOST_AWK      := $AWK"
 ## Check that the toolchains we need are installed
 ## Otherwise, instruct the user to download them from the web site
 
-TOOLCHAINS=arm-eabi-4.2.1
+TOOLCHAINS="arm-eabi-4.2.1 i686-unknown-linux-gnu-4.2.1"
 
 for tc in $TOOLCHAINS; do
     echo "Toolchain  : Checking for $tc prebuilt binaries"
     PREBUILT_BIN=build/prebuilt/$HOST_TAG/$tc/bin
     log2 "Toolchain  : Cross-compiler in <NDK>/$PREBUILT_BIN ?"
-    COMPILER_PATTERN=$ANDROID_NDK_ROOT/$PREBUILT_BIN/*-gcc$HOST_EXE
+    COMPILER_PATTERN=$ANDROID_NDK_ROOT/$PREBUILT_BIN/*-gcc$HOST_EXE 
     COMPILERS=`ls $COMPILER_PATTERN 2> /dev/null`
-    if [ -z $COMPILERS ] ; then
+    if [ -z "$COMPILERS" ] ; then
         echo ""
         echo "ERROR: Toolchain compiler not found"
         echo "It seems you do not have the correct $tc toolchain binaries."

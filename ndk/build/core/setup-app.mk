@@ -23,10 +23,16 @@ _map := NDK_APP.$(_app)
 
 # which platform/abi/toolchain are we going to use?
 TARGET_PLATFORM := $(call get,$(_map),APP_PLATFORM)
+
 TARGET_ARCH_ABI  := arm
 TARGET_ARCH      := arm
-TARGET_TOOLCHAIN := $(NDK_TARGET_TOOLCHAIN)
 
+ifeq ($(strip $(TARGET_PRODUCT)),eeepc)
+TARGET_ARCH_ABI  := x86
+TARGET_ARCH      := x86
+endif
+
+TARGET_TOOLCHAIN := $(NDK_TARGET_TOOLCHAIN)
 # the location of generated files for this app
 HOST_OUT    := $(NDK_APP_OUT)/$(_app)/$(HOST_TAG)
 HOST_OBJS   := $(HOST_OUT)/objs

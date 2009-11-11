@@ -28,21 +28,16 @@
 # WARNING: For now, only a single target ABI/Architecture us supported
 #
 
-source `dirname $0`/../core/ndk-common.sh
-
+. `dirname $0`/../core/ndk-common.sh
+echo $0
 # PLATFORM is the name of the current Android system platform
 PLATFORM=android-3
-
-# ABI is the target ABI name for the NDK
-ABI=arm
-
-# ARCH is the target ABI name in the Android sources
-ARCH=arm
 
 OPTION_HELP=no
 OPTION_BUILD_OUT=
 OPTION_PLATFORM=
 OPTION_PACKAGE=no
+OPTION_TARGET=arm
 for opt do
   optarg=`expr "x$opt" : 'x[^=]*=\(.*\)'`
   case "$opt" in
@@ -64,11 +59,21 @@ for opt do
   --package)
     OPTION_PACKAGE=yes
     ;;
+  --target-cpu=*)
+    OPTION_TARGET=$optarg
+    ;;
   *)
     echo "unknown option '$opt', use --help"
     exit 1
   esac
 done
+
+
+# ABI is the target ABI name for the NDK
+# ARCH is the target ABI name in the Android sources
+
+ABI=$OPTION_TARGET
+ARCH=$OPTION_TARGET
 
 if [ $OPTION_HELP = "yes" ] ; then
     echo "Collect files from an Android build tree and assembles a sysroot"
@@ -82,7 +87,8 @@ if [ $OPTION_HELP = "yes" ] ; then
     echo "  --platform=<name>  generate sysroot for platform <name> (default is $PLATFORM)"
     echo "  --build-out=<path> set Android build out directory"
     echo "  --package          generate sysroot package tarball"
-    echo ""
+    echo "  --package          generate sysroot package tarball"
+    echo "  --target-cpu       targeted CPU type"
     exit 0
 fi
 
@@ -265,7 +271,7 @@ common_headers $BIONIC_ROOT/libstdc++/include
 
 # C library kernel headers
 common_headers $LIBC_ROOT/kernel/common
-arch_headers   $LIBC_ROOT/kernel/arch-arm
+arch_headers   $LIBC_ROOT/kernel/arch-$ARCH
 
 # C library headers
 common_headers $LIBC_ROOT/include

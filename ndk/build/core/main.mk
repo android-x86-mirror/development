@@ -85,6 +85,9 @@ $(foreach _config_mk,$(TOOLCHAIN_CONFIGS),\
 
 #$(info ALL_TOOLCHAINS=$(ALL_TOOLCHAINS))
 NDK_TARGET_TOOLCHAIN := $(firstword $(NDK_ALL_TOOLCHAINS))
+ifeq ($(strip $(TARGET_PRODUCT)),eeepc)
+	NDK_TARGET_TOOLCHAIN := i686-unknown-linux-gnu-4.2.1
+endif
 $(call ndk_log, Default toolchain is $(NDK_TARGET_TOOLCHAIN))
 
 NDK_ALL_TOOLCHAINS   := $(call uniq,$(NDK_ALL_TOOLCHAINS))
