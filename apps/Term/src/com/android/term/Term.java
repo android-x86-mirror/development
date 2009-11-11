@@ -117,11 +117,9 @@ public class Term extends Activity {
 
     private int mFontSize = 9;
     private int mColorId = 2;
-    private int mControlKeyId = 0;
 
     private static final String FONTSIZE_KEY = "fontsize";
     private static final String COLOR_KEY = "color";
-    private static final String CONTROLKEY_KEY = "controlkey";
     private static final String SHELL_KEY = "shell";
     private static final String INITIALCOMMAND_KEY = "initialcommand";
 
@@ -131,18 +129,6 @@ public class Term extends Activity {
 
     private static final int[][] COLOR_SCHEMES = {
         {BLACK, WHITE}, {WHITE, BLACK}, {WHITE, BLUE}};
-
-    private static final int[] CONTROL_KEY_SCHEMES = {
-        KeyEvent.KEYCODE_DPAD_CENTER,
-        KeyEvent.KEYCODE_AT,
-        KeyEvent.KEYCODE_ALT_LEFT,
-        KeyEvent.KEYCODE_ALT_RIGHT
-    };
-    private static final String[] CONTROL_KEY_NAME = {
-        "Ball", "@", "Left-Alt", "Right-Alt"
-    };
-
-    private int mControlKeyCode;
 
     private final static String DEFAULT_SHELL = "/system/bin/sh -";
     private String mShell;
@@ -320,8 +306,6 @@ public class Term extends Activity {
     private void readPrefs() {
         mFontSize = readIntPref(FONTSIZE_KEY, mFontSize, 20);
         mColorId = readIntPref(COLOR_KEY, mColorId, COLOR_SCHEMES.length - 1);
-        mControlKeyId = readIntPref(CONTROLKEY_KEY, mControlKeyId,
-                CONTROL_KEY_SCHEMES.length - 1);
         {
             String newShell = readStringPref(SHELL_KEY, mShell);
             if ((newShell == null) || ! newShell.equals(mShell)) {
@@ -349,7 +333,6 @@ public class Term extends Activity {
     private void updatePrefs() {
         mEmulatorView.setTextSize(mFontSize);
         setColors();
-        mControlKeyCode = CONTROL_KEY_SCHEMES[mControlKeyId];
     }
 
     private int readIntPref(String key, int defaultValue, int maxValue) {
@@ -374,7 +357,6 @@ public class Term extends Activity {
         e.clear();
         e.putString(FONTSIZE_KEY, Integer.toString(mFontSize));
         e.putString(COLOR_KEY, Integer.toString(mColorId));
-        e.putString(CONTROLKEY_KEY, Integer.toString(mControlKeyId));
         e.putString(SHELL_KEY, mShell);
         e.putString(INITIALCOMMAND_KEY, mInitialCommand);
         e.commit();
@@ -429,7 +411,8 @@ public class Term extends Activity {
     }
 
     private boolean handleControlKey(int keyCode, boolean down) {
-        if (keyCode == mControlKeyCode) {
+        if (keyCode == KeyEvent.KEYCODE_CTRL_RIGHT ||
+                keyCode == KeyEvent.KEYCODE_CTRL_LEFT) {
             mKeyListener.handleControlKey(down);
             return true;
         }
@@ -536,9 +519,9 @@ public class Term extends Activity {
     }
 
     private void doDocumentKeys() {
-        String controlKey = CONTROL_KEY_NAME[mControlKeyId];
+        String controlKey = "ctrl";
         new AlertDialog.Builder(this).
-            setTitle("Press " + controlKey + " and Key").
+            setTitle("Press "+controlKey+" and Key").
             setMessage(controlKey + " Space ==> Control-@ (NUL)\n"
                     + controlKey + " A..Z ==> Control-A..Z\n"
                     + controlKey + " 1 ==> Control-[ (ESC)\n"
@@ -3186,6 +3169,7 @@ class TermKeyListener {
             mControlKey.onPress();
         } else {
             mControlKey.onRelease();
+            mControlKey.adjustAfterKeypress();
         }
     }
 
@@ -3212,8 +3196,6 @@ class TermKeyListener {
 
         if (result > -1) {
             mAltKey.adjustAfterKeypress();
-            mCapKey.adjustAfterKeypress();
-            mControlKey.adjustAfterKeypress();
         }
         return result;
     }
@@ -3237,7 +3219,6 @@ class TermKeyListener {
         case KeyEvent.KEYCODE_SHIFT_RIGHT:
             mCapKey.onPress();
             break;
-
         case KeyEvent.KEYCODE_ENTER:
             // Convert newlines into returns. The vt100 sends a
             // '\r' when the 'Return' key is pressed, but our
@@ -3277,6 +3258,7 @@ class TermKeyListener {
         case KeyEvent.KEYCODE_SHIFT_LEFT:
         case KeyEvent.KEYCODE_SHIFT_RIGHT:
             mCapKey.onRelease();
+            mCapKey.adjustAfterKeypress();
             break;
         default:
             // Ignore other keyUps
