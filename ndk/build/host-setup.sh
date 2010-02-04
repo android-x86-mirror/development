@@ -221,6 +221,14 @@ add_config "HOST_AWK      := $AWK"
 
 TOOLCHAINS="arm-eabi-4.2.1 i686-unknown-linux-gnu-4.2.1"
 
+## If this is a part of AOSP, try to use the toolchains of AOSP
+if [ ! -e build/prebuilt -a -d ../../prebuilt/$HOST_TAG/toolchain ]; then
+    mkdir -p build/prebuilt/$HOST_TAG
+    cd build/prebuilt/$HOST_TAG
+    ln -s ../../../../../prebuilt/linux-x86/toolchain/* .
+    cd ../../..
+fi
+
 for tc in $TOOLCHAINS; do
     echo "Toolchain  : Checking for $tc prebuilt binaries"
     PREBUILT_BIN=build/prebuilt/$HOST_TAG/$tc/bin

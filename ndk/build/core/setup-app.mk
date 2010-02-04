@@ -59,8 +59,7 @@ TARGET_TOOLCHAIN := $(NDK_TARGET_TOOLCHAIN)
 
 APP_ABI := $(strip $(NDK_APP_ABI))
 ifndef APP_ABI
-    # the default ABI for now is armeabi
-    APP_ABI := armeabi
+    APP_ABI := $(NDK_TOOLCHAIN.$(TARGET_TOOLCHAIN).abis)
 endif
 
 # check the target ABIs for this application

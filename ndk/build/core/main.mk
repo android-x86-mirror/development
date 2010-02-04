@@ -95,7 +95,7 @@ NDK_ALL_ABIS         := $(call uniq,$(NDK_ALL_ABIS))
 #
 NDK_TOOLCHAIN := $(strip $(NDK_TOOLCHAIN))
 ifndef NDK_TOOLCHAIN
-    NDK_TARGET_TOOLCHAIN := arm-eabi-4.4.0
+    NDK_TARGET_TOOLCHAIN := i686-unknown-linux-gnu-4.2.1
     $(call ndk_log, Default toolchain is $(NDK_TARGET_TOOLCHAIN))
 else
     # check that the toolchain name is supported

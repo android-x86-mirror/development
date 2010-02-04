@@ -18,7 +18,7 @@
 
 $(call ndk_log,Building application '$(NDK_APP_NAME)' for ABI '$(TARGET_ARCH_ABI)')
 
-TARGET_ARCH := arm
+TARGET_ARCH := $(if $(filter x86,$(TARGET_ARCH_ABI)),x86,arm)
 
 TARGET_OUT  := $(NDK_APP_OUT)/$(_app)/$(TARGET_ARCH_ABI)
 TARGET_OBJS := $(TARGET_OUT)/objs
