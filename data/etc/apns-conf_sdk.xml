@@ -42,4 +42,10 @@
         password="*"
         mmsc="null"
     />
+    <apn carrier="CHT"
+        mcc="466"
+        mnc="92"
+        apn="emome"
+        mmsc="null"
+    />
 </apns>
