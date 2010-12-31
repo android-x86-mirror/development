@@ -42,10 +42,249 @@
         password="*"
         mmsc="null"
     />
-    <apn carrier="CHT"
+    <apn carrier="中国移动 (China Mobile) GPRS"
+        apn="cmnet"
+        mcc="460"
+        mnc="00"
+        proxy=""
+        port=""
+        user="none"
+        server=""
+        password="none"
+        type="default,supl"
+    />
+    <apn carrier="中国移动彩信 (China Mobile)"
+        apn="cmwap"
+        mcc="460"
+        mnc="00"
+        proxy="10.0.0.172"
+        port="80"
+        user=""
+        password=""
+        server=""
+        mmsc="http://mmsc.monternet.com"
+        mmsproxy="10.0.0.172"
+        mmsport="80"
+        type="mms"
+    />
+    <apn carrier="中国联通 3G 网络 (China Unicom)"
+        apn="3gnet"
+        mcc="460"
+        mnc="01"
+        proxy=""
+        port=""
+        user="none"
+        server=""
+        password="none"
+        type="default,supl"
+    />
+    <apn carrier="中国联通 3G 彩信 (China Unicom)"
+        apn="3gwap"
+        mcc="460"
+        mnc="01"
+        proxy=""
+        port=""
+        mmsc="http://mmsc.myuni.com.cn"
+        mmsproxy="10.0.0.172"
+        mmsport="80"
+        type="mms"
+    />
+    <apn carrier="中国移动 (China Mobile) GPRS"
+        apn="cmnet"
+        mcc="460"
+        mnc="02"
+        proxy=""
+        port=""
+        user="none"
+        server=""
+        password="none"
+        type="default,supl"
+    />
+    <apn carrier="中国移动彩信 (China Mobile)"
+        apn="cmwap"
+        mcc="460"
+        mnc="02"
+        proxy="10.0.0.172"
+        port="80"
+        user=""
+        password=""
+        server=""
+        mmsc="http://mmsc.monternet.com"
+        mmsproxy="10.0.0.172"
+        mmsport="80"
+        type="mms"
+    />
+    <apn
+        mcc="466"
+        mnc="01"
+        type="default,supl"
+        carrier="遠傳電信(Far EasTone) (Internet)"
+        apn="internet"
+    />
+    <apn
+        mcc="466"
+        mnc="01"
+        type="default,supl"
+        proxy="210.241.199.199"
+        carrier="遠傳電信(Far EasTone) (Fetnet01)"
+        apn="fetnet01"
+        port="80"
+    />
+    <apn
+        mcc="466"
+        mnc="01"
+        mmsc="http://mms"
+        mmsport="9201"
+        type="mms"
+        mmsproxy="210.241.199.199"
+        carrier="遠傳電信(Far EasTone) (MMS)"
+        apn="fetnet01"
+    />
+    <apn
+        mcc="466"
+        mnc="88"
+        type="default,supl"
+        carrier="和信電訊(KGT-Online) (Internet)"
+        apn="internet"
+    />
+    <apn
+        mcc="466"
+        mnc="88"
+        mmsc="http://mms.kgtmms.net.tw/mms/wapenc"
+        mmsport="8080"
+        type="mms"
+        mmsproxy="172.28.33.5"
+        carrier="和信電訊(KGT-Online) (MMS)"
+        apn="kgtmms"
+    />
+    <apn
+        mcc="466"
+        mnc="89"
+        type="default,supl"
+        carrier="威寶電信(VIBO) (Internet)"
+        apn="vibo"
+    />
+    <apn
+        mcc="466"
+        mnc="89"
+        mmsc="http://mms"
+        mmsport="8080"
+        type="mms"
+        mmsproxy="172.24.128.36"
+        carrier="威寶電信(VIBO) (MMS)"
+        apn="vibo"
+    />
+    <apn
+        mcc="466"
+        mnc="89"
+        type="default,supl"
+        carrier="震旦電信(AURORA) (Internet)"
+        apn="auroraweb"
+    />
+    <apn
+        mcc="466"
+        mnc="89"
+        mmsc="http://auroramms"
+        mmsport="8080"
+        type="mms"
+        mmsproxy="172.24.128.36"
+        carrier="震旦電信(AURORA) (MMS)"
+        apn="aurorawap"
+    />
+    <apn
         mcc="466"
         mnc="92"
+        type="default,supl"
+        carrier="中華電信(Chunghwa) (emome)"
         apn="emome"
-        mmsc="null"
+    />
+    <apn
+        mcc="466"
+        mnc="92"
+        type="default,supl"
+        carrier="中華電信(Chunghwa) (Internet)"
+        apn="internet"
+    />
+    <apn
+        mcc="466"
+        mnc="92"
+        mmsc="http://mms.emome.net:8002"
+        mmsport="8080"
+        type="mms"
+        mmsproxy="10.1.1.1"
+        carrier="中華電信(Chunghwa) (MMS)"
+        apn="emome"
+    />
+    <apn
+        mcc="466"
+        mnc="93"
+        type="default,supl"
+        carrier="台灣大哥大(TW Mobile) (twm)"
+        apn="twm"
+    />
+    <apn
+        mcc="466"
+        mnc="93"
+        type="default,supl"
+        carrier="台灣大哥大(TW Mobile) (Internet)"
+        apn="internet"
+    />
+    <apn
+        mcc="466"
+        mnc="93"
+        mmsc="http://mms.catch.net.tw"
+        mmsport="80"
+        type="mms"
+        mmsproxy="10.1.1.2"
+        carrier="台灣大哥大(TW Mobile) (MMS)"
+        apn="mms"
+    />
+    <apn
+        mcc="466"
+        mnc="97"
+        type="default,supl"
+        carrier="台灣大哥大(TW Mobile) (twm)"
+        apn="twm"
+    />
+    <apn
+        mcc="466"
+        mnc="97"
+        type="default,supl"
+        carrier="台灣大哥大(TW Mobile) (Internet)"
+        apn="internet"
+    />
+    <apn
+        mcc="466"
+        mnc="97"
+        mmsc="http://mms.catch.net.tw"
+        mmsport="80"
+        type="mms"
+        mmsproxy="10.1.1.2"
+        carrier="台灣大哥大(TW Mobile) (MMS)"
+        apn="mms"
+    />
+    <apn
+        mcc="466"
+        mnc="99"
+        type="default,supl"
+        carrier="台灣大哥大(TW Mobile) (twm)"
+        apn="twm"
+    />
+    <apn
+        mcc="466"
+        mnc="99"
+        type="default,supl"
+        carrier="台灣大哥大(TW Mobile) (Internet)"
+        apn="internet"
+    />
+    <apn
+        mcc="466"
+        mnc="99"
+        mmsc="http://mms.catch.net.tw"
+        mmsport="80"
+        type="mms"
+        mmsproxy="10.1.1.2"
+        carrier="台灣大哥大(TW Mobile) (MMS)"
+        apn="mms"
     />
 </apns>
